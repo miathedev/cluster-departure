@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "train-yard: run",
+      "type": "shell",
+      "command": ".venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8077",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "lint: python (ruff)",
+      "type": "shell",
+      "command": ".venv/bin/pip install -q -r requirements-dev.txt && .venv/bin/ruff check app --select F",
+      "problemMatcher": []
+    },
+    {
+      "label": "lint: python dead code (vulture)",
+      "type": "shell",
+      "command": ".venv/bin/pip install -q -r requirements-dev.txt && .venv/bin/vulture app/main.py --min-confidence 80",
+      "problemMatcher": []
+    },
+    {
+      "label": "lint: js (eslint)",
+      "type": "shell",
+      "command": "env -u LD_LIBRARY_PATH npx --yes eslint@9 app/static/app.js",
+      "problemMatcher": []
+    },
+    {
+      "label": "lint: css unused selectors",
+      "type": "shell",
+      "command": ".venv/bin/python .vscode/check_css.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "audit: all checks",
+      "type": "shell",
+      "command": "echo all lint tasks passed",
+      "dependsOn": [
+        "lint: python (ruff)",
+        "lint: python dead code (vulture)",
+        "lint: js (eslint)",
+        "lint: css unused selectors"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cluster deperature</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Cluster deperature</h1>
+    <select id="ns" title="Namespace"></select>
+    <div id="nodebox">node -</div>
+    <div id="conn">connecting</div>
+  </header>
+  <main id="stations"></main>
+  <div id="empty" hidden>no deployments in this namespace</div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
